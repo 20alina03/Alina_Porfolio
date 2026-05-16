@@ -167,29 +167,33 @@ function Header({ active }: { active: string }) {
 
 function Hero() {
   return (
-    <section id="top" className="relative pt-40 pb-24 md:pt-48 md:pb-32">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="top" className="relative pt-36 pb-24 md:pt-44 md:pb-32">
+      <div className="mx-auto max-w-6xl px-6 [perspective:1200px]">
         <div className="fade-up">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs uppercase tracking-[0.18em] text-muted-foreground backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500/80" />
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500/80 animate-pulse" />
             Available for design work · 2026
           </span>
         </div>
-        <h1 className="fade-up mt-8 font-display text-[14vw] leading-[0.92] md:text-[8.2rem]">
-          Designing<br />
-          <span className="italic text-foreground/90">
-            quiet, considered
-          </span>
-          <br />
-          interfaces.
+
+        <p className="fade-up mt-10 max-w-md text-base md:text-lg italic text-muted-foreground font-display">
+          Designing quiet, considered interfaces —
+        </p>
+
+        <h1
+          className="tilt-3d fade-up mt-2 font-display leading-[0.86] text-[20vw] md:text-[12rem] lg:text-[15rem]"
+          data-text="Alina Rafiq"
+        >
+          <span className="name-shine block">Alina</span>
+          <span className="name-shine block italic -mt-2 md:-mt-6">Rafiq.</span>
         </h1>
-        <div className="mt-10 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-end">
+
+        <div className="mt-12 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-end">
           <p className="fade-up max-w-xl text-lg leading-relaxed text-muted-foreground">
-            I'm <span className="text-foreground">Alina Rafiq</span> — a UI/UX
-            designer based in Lahore. I help teams turn fuzzy product ideas into
-            calm, usable, beautifully crafted interfaces. Currently designing
-            at <span className="text-foreground">Novasinc</span>, previously at
-            Synavos and MAIMA Soft.
+            I'm a UI/UX designer based in Lahore. I help teams turn fuzzy product
+            ideas into calm, usable, beautifully crafted interfaces. Currently
+            designing at <span className="text-foreground">Novasinc</span>,
+            previously at Synavos and MAIMA Soft.
           </p>
           <div className="flex flex-wrap gap-3 md:justify-end">
             <a
