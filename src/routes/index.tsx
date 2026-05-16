@@ -132,9 +132,10 @@ function Portfolio() {
     <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
       {/* Pastel ambient blobs */}
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="pastel-blob float-slow" style={{ background: "var(--peach)", width: 520, height: 520, top: -120, left: -120 }} />
-        <div className="pastel-blob float-slow" style={{ background: "var(--lavender)", width: 480, height: 480, top: "30%", right: -160, animationDelay: "-3s" }} />
-        <div className="pastel-blob float-slow" style={{ background: "var(--mint)", width: 420, height: 420, bottom: -140, left: "20%", animationDelay: "-6s" }} />
+        <div data-parallax="40" className="pastel-blob drift-a" style={{ background: "var(--peach)", width: 520, height: 520, top: -120, left: -120 }} />
+        <div data-parallax="-30" className="pastel-blob drift-b" style={{ background: "var(--lavender)", width: 480, height: 480, top: "30%", right: -160 }} />
+        <div data-parallax="25" className="pastel-blob drift-c" style={{ background: "var(--mint)", width: 420, height: 420, bottom: -140, left: "20%" }} />
+        <div data-parallax="-18" className="pastel-blob drift-a" style={{ background: "var(--butter)", width: 320, height: 320, top: "55%", left: "10%", animationDelay: "-4s" }} />
         <div className="fixed inset-0 grain opacity-50" />
       </div>
 
