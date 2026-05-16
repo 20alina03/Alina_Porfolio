@@ -106,7 +106,26 @@ function Portfolio() {
       const el = document.getElementById(n.id);
       if (el) obs.observe(el);
     });
-    return () => obs.disconnect();
+
+    const onMove = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      document.documentElement.style.setProperty("--mx", String(x));
+      document.documentElement.style.setProperty("--my", String(y));
+      document.querySelectorAll<HTMLElement>(".tilt-3d").forEach((el) => {
+        el.style.setProperty("--rx", String(x * 6));
+        el.style.setProperty("--ry", String(y * 4));
+      });
+      document.querySelectorAll<HTMLElement>("[data-parallax]").forEach((el) => {
+        const depth = Number(el.dataset.parallax || "20");
+        el.style.transform = `translate3d(${x * depth}px, ${y * depth}px, 0)`;
+      });
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => {
+      obs.disconnect();
+      window.removeEventListener("mousemove", onMove);
+    };
   }, []);
 
   return (
