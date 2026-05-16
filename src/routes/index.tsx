@@ -106,16 +106,36 @@ function Portfolio() {
       const el = document.getElementById(n.id);
       if (el) obs.observe(el);
     });
-    return () => obs.disconnect();
+
+    const onMove = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      document.documentElement.style.setProperty("--mx", String(x));
+      document.documentElement.style.setProperty("--my", String(y));
+      document.querySelectorAll<HTMLElement>(".tilt-3d").forEach((el) => {
+        el.style.setProperty("--rx", String(x * 6));
+        el.style.setProperty("--ry", String(y * 4));
+      });
+      document.querySelectorAll<HTMLElement>("[data-parallax]").forEach((el) => {
+        const depth = Number(el.dataset.parallax || "20");
+        el.style.transform = `translate3d(${x * depth}px, ${y * depth}px, 0)`;
+      });
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => {
+      obs.disconnect();
+      window.removeEventListener("mousemove", onMove);
+    };
   }, []);
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
       {/* Pastel ambient blobs */}
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="pastel-blob float-slow" style={{ background: "var(--peach)", width: 520, height: 520, top: -120, left: -120 }} />
-        <div className="pastel-blob float-slow" style={{ background: "var(--lavender)", width: 480, height: 480, top: "30%", right: -160, animationDelay: "-3s" }} />
-        <div className="pastel-blob float-slow" style={{ background: "var(--mint)", width: 420, height: 420, bottom: -140, left: "20%", animationDelay: "-6s" }} />
+        <div data-parallax="40" className="pastel-blob drift-a" style={{ background: "var(--peach)", width: 520, height: 520, top: -120, left: -120 }} />
+        <div data-parallax="-30" className="pastel-blob drift-b" style={{ background: "var(--lavender)", width: 480, height: 480, top: "30%", right: -160 }} />
+        <div data-parallax="25" className="pastel-blob drift-c" style={{ background: "var(--mint)", width: 420, height: 420, bottom: -140, left: "20%" }} />
+        <div data-parallax="-18" className="pastel-blob drift-a" style={{ background: "var(--butter)", width: 320, height: 320, top: "55%", left: "10%", animationDelay: "-4s" }} />
         <div className="fixed inset-0 grain opacity-50" />
       </div>
 
@@ -167,29 +187,33 @@ function Header({ active }: { active: string }) {
 
 function Hero() {
   return (
-    <section id="top" className="relative pt-40 pb-24 md:pt-48 md:pb-32">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="top" className="relative pt-36 pb-24 md:pt-44 md:pb-32">
+      <div className="mx-auto max-w-6xl px-6 [perspective:1200px]">
         <div className="fade-up">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs uppercase tracking-[0.18em] text-muted-foreground backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500/80" />
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500/80 animate-pulse" />
             Available for design work · 2026
           </span>
         </div>
-        <h1 className="fade-up mt-8 font-display text-[14vw] leading-[0.92] md:text-[8.2rem]">
-          Designing<br />
-          <span className="italic text-foreground/90">
-            quiet, considered
-          </span>
-          <br />
-          interfaces.
+
+        <p className="fade-up mt-10 max-w-md text-base md:text-lg italic text-muted-foreground font-display">
+          Designing quiet, considered interfaces —
+        </p>
+
+        <h1
+          className="tilt-3d fade-up mt-2 font-display leading-[0.86] text-[20vw] md:text-[12rem] lg:text-[15rem]"
+          data-text="Alina Rafiq"
+        >
+          <span className="name-shine block">Alina</span>
+          <span className="name-shine block italic -mt-2 md:-mt-6">Rafiq.</span>
         </h1>
-        <div className="mt-10 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-end">
+
+        <div className="mt-12 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-end">
           <p className="fade-up max-w-xl text-lg leading-relaxed text-muted-foreground">
-            I'm <span className="text-foreground">Alina Rafiq</span> — a UI/UX
-            designer based in Lahore. I help teams turn fuzzy product ideas into
-            calm, usable, beautifully crafted interfaces. Currently designing
-            at <span className="text-foreground">Novasinc</span>, previously at
-            Synavos and MAIMA Soft.
+            I'm a UI/UX designer based in Lahore. I help teams turn fuzzy product
+            ideas into calm, usable, beautifully crafted interfaces. Currently
+            designing at <span className="text-foreground">Novasinc</span>,
+            previously at Synavos and MAIMA Soft.
           </p>
           <div className="flex flex-wrap gap-3 md:justify-end">
             <a
