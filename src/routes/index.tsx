@@ -136,6 +136,7 @@ function Portfolio() {
         <div data-parallax="-30" className="pastel-blob drift-b" style={{ background: "var(--lavender)", width: 480, height: 480, top: "30%", right: -160 }} />
         <div data-parallax="25" className="pastel-blob drift-c" style={{ background: "var(--mint)", width: 420, height: 420, bottom: -140, left: "20%" }} />
         <div data-parallax="-18" className="pastel-blob drift-a" style={{ background: "var(--butter)", width: 320, height: 320, top: "55%", left: "10%", animationDelay: "-4s" }} />
+        <FloatingUX />
         <div className="fixed inset-0 grain opacity-50" />
       </div>
 
