@@ -201,11 +201,11 @@ function Hero() {
         </p>
 
         <h1
-          className="tilt-3d fade-up mt-2 font-display leading-[0.86] text-[20vw] md:text-[12rem] lg:text-[15rem]"
+          className="tilt-3d fade-up mt-2 font-display leading-[0.88] text-[14vw] md:text-[7rem] lg:text-[9rem]"
           data-text="Alina Rafiq"
         >
           <span className="name-shine block">Alina</span>
-          <span className="name-shine block italic -mt-2 md:-mt-6">Rafiq.</span>
+          <span className="name-shine block italic -mt-1 md:-mt-3">Rafiq.</span>
         </h1>
 
         <div className="mt-12 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-end">
