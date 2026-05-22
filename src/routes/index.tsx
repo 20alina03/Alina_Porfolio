@@ -92,8 +92,10 @@ const PROCESS = [
 
 function Portfolio() {
   const [active, setActive] = useState("work");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -118,7 +120,8 @@ function Portfolio() {
       });
       document.querySelectorAll<HTMLElement>("[data-parallax]").forEach((el) => {
         const depth = Number(el.dataset.parallax || "20");
-        el.style.transform = `translate3d(${x * depth}px, ${y * depth}px, 0)`;
+        const existing = el.getAttribute("data-rotate") || "0";
+        el.style.transform = `translate3d(${x * depth}px, ${y * depth}px, 0) rotate(${existing}deg)`;
       });
     };
     window.addEventListener("mousemove", onMove);
@@ -132,11 +135,11 @@ function Portfolio() {
     <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
       {/* Pastel ambient blobs */}
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div data-parallax="40" className="pastel-blob drift-a" style={{ background: "var(--peach)", width: 520, height: 520, top: -120, left: -120 }} />
-        <div data-parallax="-30" className="pastel-blob drift-b" style={{ background: "var(--lavender)", width: 480, height: 480, top: "30%", right: -160 }} />
-        <div data-parallax="25" className="pastel-blob drift-c" style={{ background: "var(--mint)", width: 420, height: 420, bottom: -140, left: "20%" }} />
-        <div data-parallax="-18" className="pastel-blob drift-a" style={{ background: "var(--butter)", width: 320, height: 320, top: "55%", left: "10%", animationDelay: "-4s" }} />
-        <FloatingUX />
+        <div data-parallax="40" data-rotate="0" className="pastel-blob drift-a" style={{ background: "var(--peach)", width: 520, height: 520, top: -120, left: -120 }} />
+        <div data-parallax="-30" data-rotate="0" className="pastel-blob drift-b" style={{ background: "var(--lavender)", width: 480, height: 480, top: "30%", right: -160 }} />
+        <div data-parallax="25" data-rotate="0" className="pastel-blob drift-c" style={{ background: "var(--mint)", width: 420, height: 420, bottom: -140, left: "20%" }} />
+        <div data-parallax="-18" data-rotate="0" className="pastel-blob drift-a" style={{ background: "var(--butter)", width: 320, height: 320, top: "55%", left: "10%", animationDelay: "-4s" }} />
+        <FloatingUX mounted={mounted} />
         <div className="fixed inset-0 grain opacity-50" />
       </div>
 
@@ -202,11 +205,10 @@ function Hero() {
         </p>
 
         <h1
-          className="tilt-3d fade-up mt-2 font-display leading-[0.88] text-[14vw] md:text-[7rem] lg:text-[9rem]"
+          className="tilt-3d fade-up mt-2 font-display leading-[0.92] text-[10vw] md:text-[5rem] lg:text-[6.5rem] whitespace-nowrap"
           data-text="Alina Rafiq"
         >
-          <span className="name-shine block">Alina</span>
-          <span className="name-shine block italic -mt-1 md:-mt-3">Rafiq.</span>
+          <span className="name-shine">Alina Rafiq.</span>
         </h1>
 
         <div className="mt-12 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-end">
@@ -491,9 +493,9 @@ function Footer() {
   );
 }
 
-function FloatingUX() {
-  // UI/UX themed floating background objects: artboard frames, cursors,
-  // pen-tool nodes, color swatches, type specimen, grid/wireframe bits.
+function FloatingUX({ mounted }: { mounted: boolean }) {
+  if (!mounted) return null;
+
   const items: Array<{ top: string; left?: string; right?: string; delay: string; depth: number; rotate: number; el: React.ReactNode }> = [
     {
       top: "12%", left: "6%", delay: "-2s", depth: 22, rotate: -8,
@@ -599,6 +601,7 @@ function FloatingUX() {
         <div
           key={i}
           data-parallax={it.depth}
+          data-rotate={it.rotate}
           className="absolute hidden sm:block"
           style={{
             top: it.top,
