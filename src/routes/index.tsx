@@ -493,9 +493,9 @@ function Footer() {
   );
 }
 
-function FloatingUX() {
-  // UI/UX themed floating background objects: artboard frames, cursors,
-  // pen-tool nodes, color swatches, type specimen, grid/wireframe bits.
+function FloatingUX({ mounted }: { mounted: boolean }) {
+  if (!mounted) return null;
+
   const items: Array<{ top: string; left?: string; right?: string; delay: string; depth: number; rotate: number; el: React.ReactNode }> = [
     {
       top: "12%", left: "6%", delay: "-2s", depth: 22, rotate: -8,
@@ -601,6 +601,7 @@ function FloatingUX() {
         <div
           key={i}
           data-parallax={it.depth}
+          data-rotate={it.rotate}
           className="absolute hidden sm:block"
           style={{
             top: it.top,
@@ -621,5 +622,4 @@ function FloatingUX() {
       ))}
     </>
   );
-}
 
