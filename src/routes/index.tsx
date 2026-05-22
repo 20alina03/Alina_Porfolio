@@ -159,8 +159,16 @@ function Header({ active }: { active: string }) {
   return (
     <header className="fixed top-4 left-1/2 z-50 -translate-x-1/2 px-4 w-[min(960px,calc(100%-1rem))]">
       <nav className="flex items-center justify-between rounded-full border border-border/60 bg-card/70 px-5 py-2.5 backdrop-blur-xl shadow-[0_8px_30px_rgba(60,40,80,0.06)]">
-        <a href="#top" className="font-display text-xl leading-none">
-          Alina<span className="text-muted-foreground">.</span>
+        <a href="#top" className="flex items-center gap-2 font-display text-xl leading-none">
+          <img
+            src="/logo.png"
+            alt=""
+            aria-hidden="true"
+            className="h-6 w-6 shrink-0 rounded-full object-cover"
+          />
+          <span>
+            Alina<span className="text-muted-foreground">.</span>
+          </span>
         </a>
         <ul className="hidden md:flex items-center gap-1 text-sm">
           {NAV.map((n) => (
