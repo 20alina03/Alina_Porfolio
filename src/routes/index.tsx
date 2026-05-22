@@ -490,3 +490,128 @@ function Footer() {
     </footer>
   );
 }
+
+function FloatingUX() {
+  // UI/UX themed floating background objects: artboard frames, cursors,
+  // pen-tool nodes, color swatches, type specimen, grid/wireframe bits.
+  const items: Array<{ top: string; left?: string; right?: string; delay: string; depth: number; rotate: number; el: React.ReactNode }> = [
+    {
+      top: "12%", left: "6%", delay: "-2s", depth: 22, rotate: -8,
+      el: (
+        <div className="rounded-xl border border-border bg-card/80 backdrop-blur px-3 py-2 shadow-[0_10px_30px_-12px_rgba(60,40,80,0.18)]">
+          <div className="flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded-full bg-rose-300" />
+            <span className="h-2 w-2 rounded-full bg-amber-300" />
+            <span className="h-2 w-2 rounded-full bg-emerald-300" />
+            <span className="ml-2 text-[10px] tracking-widest text-muted-foreground uppercase">Artboard · 1440</span>
+          </div>
+          <div className="mt-2 grid grid-cols-3 gap-1">
+            <div className="h-6 rounded bg-[var(--lavender)]/70" />
+            <div className="h-6 rounded bg-[var(--peach)]/70" />
+            <div className="h-6 rounded bg-[var(--mint)]/70" />
+          </div>
+        </div>
+      ),
+    },
+    {
+      top: "22%", right: "8%", delay: "-5s", depth: -28, rotate: 6,
+      el: (
+        <div className="rounded-full border border-border bg-card/80 backdrop-blur px-3 py-1.5 shadow-md flex items-center gap-2">
+          <span className="h-3 w-3 rounded-full" style={{ background: "var(--lavender)" }} />
+          <span className="h-3 w-3 rounded-full" style={{ background: "var(--peach)" }} />
+          <span className="h-3 w-3 rounded-full" style={{ background: "var(--mint)" }} />
+          <span className="h-3 w-3 rounded-full" style={{ background: "var(--butter)" }} />
+          <span className="h-3 w-3 rounded-full" style={{ background: "var(--rose)" }} />
+        </div>
+      ),
+    },
+    {
+      top: "62%", left: "4%", delay: "-1s", depth: 18, rotate: -4,
+      el: (
+        <div className="rounded-lg border border-border bg-card/80 backdrop-blur px-3 py-2 shadow-md font-display">
+          <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Aa · Instrument</p>
+          <p className="text-3xl leading-none mt-1">Aa</p>
+        </div>
+      ),
+    },
+    {
+      top: "70%", right: "10%", delay: "-3s", depth: -20, rotate: 5,
+      el: (
+        <svg width="80" height="80" viewBox="0 0 80 80" className="drop-shadow-md">
+          <defs>
+            <pattern id="ux-grid" width="10" height="10" patternUnits="userSpaceOnUse">
+              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeOpacity="0.25" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="80" height="80" rx="10" fill="var(--card)" stroke="var(--border)" />
+          <rect width="80" height="80" rx="10" fill="url(#ux-grid)" className="text-foreground" />
+          <circle cx="22" cy="40" r="4" fill="var(--lavender)" />
+          <circle cx="58" cy="40" r="4" fill="var(--peach)" />
+          <line x1="22" y1="40" x2="58" y2="40" stroke="currentColor" strokeOpacity="0.5" strokeDasharray="3 3" />
+        </svg>
+      ),
+    },
+    {
+      top: "38%", left: "44%", delay: "-7s", depth: 14, rotate: -10,
+      el: (
+        <svg width="36" height="46" viewBox="0 0 24 30" className="drop-shadow">
+          <path d="M2 2 L2 22 L8 18 L11 26 L14 25 L11 17 L20 17 Z" fill="var(--foreground)" stroke="var(--background)" strokeWidth="1.2" strokeLinejoin="round" />
+        </svg>
+      ),
+    },
+    {
+      top: "8%", left: "52%", delay: "-4s", depth: -12, rotate: 4,
+      el: (
+        <div className="rounded-md border border-border bg-card/80 backdrop-blur px-2.5 py-1 shadow-sm flex items-center gap-2">
+          <span className="h-2 w-2 rounded-sm rotate-45 border border-foreground/70" />
+          <span className="text-[10px] tracking-wider text-muted-foreground">12 · 16 · 24 · 32</span>
+        </div>
+      ),
+    },
+    {
+      top: "48%", right: "32%", delay: "-6s", depth: 24, rotate: -6,
+      el: (
+        <div className="rounded-2xl border border-border bg-card/80 backdrop-blur p-2 shadow-md w-28">
+          <div className="h-10 rounded-lg bg-gradient-to-br from-[var(--peach)] to-[var(--lavender)]" />
+          <div className="mt-1.5 space-y-1">
+            <div className="h-1.5 w-3/4 rounded bg-foreground/15" />
+            <div className="h-1.5 w-1/2 rounded bg-foreground/10" />
+          </div>
+        </div>
+      ),
+    },
+    {
+      top: "82%", left: "40%", delay: "-2.5s", depth: -16, rotate: 8,
+      el: (
+        <svg width="70" height="36" viewBox="0 0 70 36" className="drop-shadow-sm">
+          <path d="M2 30 C 18 30, 18 8, 35 8 S 52 30, 68 6" fill="none" stroke="var(--foreground)" strokeWidth="1.5" />
+          <circle cx="2" cy="30" r="3" fill="var(--lavender)" stroke="var(--foreground)" strokeWidth="1" />
+          <circle cx="35" cy="8" r="3" fill="var(--peach)" stroke="var(--foreground)" strokeWidth="1" />
+          <circle cx="68" cy="6" r="3" fill="var(--mint)" stroke="var(--foreground)" strokeWidth="1" />
+        </svg>
+      ),
+    },
+  ];
+
+  return (
+    <>
+      {items.map((it, i) => (
+        <div
+          key={i}
+          data-parallax={it.depth}
+          className="absolute float-slow opacity-80 hidden sm:block"
+          style={{
+            top: it.top,
+            left: it.left,
+            right: it.right,
+            animationDelay: it.delay,
+            transform: `rotate(${it.rotate}deg)`,
+          }}
+        >
+          {it.el}
+        </div>
+      ))}
+    </>
+  );
+}
+
