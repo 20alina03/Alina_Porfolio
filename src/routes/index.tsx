@@ -599,16 +599,22 @@ function FloatingUX() {
         <div
           key={i}
           data-parallax={it.depth}
-          className="absolute float-slow opacity-80 hidden sm:block"
+          className="absolute hidden sm:block"
           style={{
             top: it.top,
             left: it.left,
             right: it.right,
-            animationDelay: it.delay,
-            transform: `rotate(${it.rotate}deg)`,
           }}
         >
-          {it.el}
+          <div
+            className="float-slow opacity-80"
+            style={{
+              animationDelay: it.delay,
+              transform: `rotate(${it.rotate}deg)`,
+            }}
+          >
+            {it.el}
+          </div>
         </div>
       ))}
     </>
