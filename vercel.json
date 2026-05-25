@@ -1,10 +1,16 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "framework": "vite",
-  "rewrites": [
-    { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/logo.png", "destination": "/logo.png" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  "builds": [
+    {
+      "src": "dist/server/index.js",
+      "use": "@vercel/node",
+      "config": { "zeroConfig": true }
+    }
+  ],
+  "routes": [
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/logo.png", "dest": "/logo.png" },
+    { "src": "/(.*)", "dest": "/dist/server/index.js" }
+  ],
+  "publicPath": "/dist"
 }
